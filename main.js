@@ -5,7 +5,7 @@ const password2 = 'Console.logger';
 const user3 = 'anthony@codeimmersives.com';
 const password3 = 'like a BOSS';
 
-// We'll be running our code as users by typing in
+// / We'll be running our code as users by typing in
 // `node [path to this file]` on the command line,
 // followed by our email address and our password.
 // (Or the email and pw we want to test!)
@@ -53,6 +53,27 @@ const password3 = 'like a BOSS';
 
 // Being sure to do all that's outlined above, write
 // your code below!
+ 
+const email = process.argv [2]
+const password = process.argv [3]
+// console.log (email)
+// console.log (password)
+const itsAMatch = passwordMatches (email,password)
+console.log (itsAMatch)
+if (itsAMatch) {
+  console.log ("You are logged in!");
+} else {
+  console.log ("wrong password")
+}
+const isValidUser = isRegisteredUser(email)
+console.log (isValidUser)
+if (isValidUser) {
+  console.log ("Welcome!") 
+} 
+
+
+
+
 
 
 
