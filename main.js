@@ -13,6 +13,7 @@ const password3 = 'like a BOSS';
 // password to arrive at one of the following messages
 // for the user:
 //
+
 // 1. If the email belongs to one of our registered
 // users AND the password matches that user, tell them
 // that they are logged in.
@@ -53,33 +54,33 @@ const password3 = 'like a BOSS';
 
 // Being sure to do all that's outlined above, write
 // your code below!
- 
-const email = process.argv [2]
-const password = process.argv [3]
-// console.log (email)
-// console.log (password)
-const itsAMatch = passwordMatches (email,password)
-console.log (itsAMatch)
+
+const userEmail = process.argv[2];
+const userPassword = process.argv[3];
+
+const itsAMatch = passwordMatches(userEmail, userPassword);
+
 if (itsAMatch) {
-  console.log ("You are logged in!");
-} else {
-  console.log ("wrong password")
-}
-const isValidUser = isRegisteredUser(email)
-console.log (isValidUser)
-if (isValidUser) {
-  console.log ("Welcome!") 
+  console.log("You are logged in!");
+  console.log("Welcome");
+  return;
 } 
 
+const newUser = isValidEmail(userEmail);
+const newPassword = isValidPassword(userPassword);
 
-
-
-
-
-
-
-
-
+if (newUser && !newPassword) {
+  console.log("Password incorrect");
+}
+if (!itsAMatch && newUser && newPassword) {
+  console.log("You are now signed up");
+}
+if (!isRegisteredUser || !newUser) {
+  console.log("Email is not valid, you need at least one character before @codeimmersives.");
+}
+if (!newPassword) {
+  console.log("Passwords needs to be 8 characters with a lower case and upper case letter");
+}
 
 
 // Solution to the back-end portion of this app.
@@ -88,7 +89,8 @@ if (isValidUser) {
 function isValidEmail(email) {
   return email.endsWith('@codeimmersives.com') && email.length >= 20;
 }
-
+const email = process.argv [2]
+const password = process.argv [3]
 function isValidPassword(password) {
   return password.length >= 8
     && password.toUpperCase() !== password
